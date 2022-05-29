@@ -1,4 +1,4 @@
-# store-whatsapp
+# store-evertec
 
 ## Project setup
 ```
