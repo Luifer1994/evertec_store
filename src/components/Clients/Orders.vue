@@ -2,7 +2,7 @@
   <div class="container mt-5 mb-5">
     <div class="card">
       <div v-if="!dataClient">
-        <h5>Ingresa tu email para busar tus ordenes</h5>
+        <h5>Ingresa tu email para buscar tus ordenes</h5>
         <div class="row">
           <div class="col-sm-12 col-md-8 col-lg-8">
             <input
