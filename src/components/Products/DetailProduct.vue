@@ -75,7 +75,6 @@ export default {
       const res = await axios.get(
         this.urlApi + "products-detail/" + this.$route.params.id
       );
-      console.log(res.data);
       this.product = res.data.data;
     },
     add() {
