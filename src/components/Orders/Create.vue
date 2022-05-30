@@ -2,149 +2,139 @@
   <div class="container mt-5">
     <div class="card">
       <div class="card-body">
-        <form class="needs-validation" novalidate>
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="validationCustom03">Email</label>
-              <input
-                type="email"
-                v-model="client.email"
-                class="form-control"
-                :class="{
-                  'is-invalid':
-                    errors.email || errorsCreated.client['client.email'],
-                }"
-              />
-              <small v-if="errors.email" class="text-danger">{{
-                errors.email[0]
-              }}</small>
-              <small
-                v-if="errorsCreated.client['client.email']"
-                class="text-danger"
-                >{{ errorsCreated.client["client.email"][0] }}</small
-              >
-            </div>
-            <div v-if="finishSearch">
-              <div class="col-md-6 mb-3">
-                <label for="validationCustom01">Tipo de documento</label>
-                <select
-                  v-model="client.document_type_id"
-                  class="form-control"
-                  :class="{
-                    'is-invalid':
-                      errorsCreated.client['client.document_type_id'],
-                  }"
-                >
-                  <option
-                    v-for="documentType in documentTypes"
-                    :key="documentType.id"
-                    :value="documentType.id"
-                  >
-                    {{ documentType.name }}
-                  </option>
-                </select>
-                <small
-                  v-if="errorsCreated.client['client.document_type_id']"
-                  class="text-danger"
-                  >{{
-                    errorsCreated.client["client.document_type_id"][0]
-                  }}</small
-                >
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="validationCustom02">Número de documento</label>
-                <input
-                  v-model="client.document_number"
-                  type="text"
-                  class="form-control"
-                  :class="{
-                    'is-invalid':
-                      errorsCreated.client['client.document_number'],
-                  }"
-                />
-                <small
-                  v-if="errorsCreated.client['client.document_number']"
-                  class="text-danger"
-                  >{{
-                    errorsCreated.client["client.document_number"][0]
-                  }}</small
-                >
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="validationCustom03">Nombre</label>
-                <input
-                  v-model="client.name"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errorsCreated.client['client.name'] }"
-                />
-                <small
-                  v-if="errorsCreated.client['client.name']"
-                  class="text-danger"
-                  >{{ errorsCreated.client["client.name"][0] }}</small
-                >
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="validationCustom03">Apellidos</label>
-                <input
-                  v-model="client.last_name"
-                  type="text"
-                  class="form-control"
-                  :class="{
-                    'is-invalid': errorsCreated.client['client.last_name'],
-                  }"
-                />
-                <small
-                  v-if="errorsCreated.client['client.last_name']"
-                  class="text-danger"
-                  >{{ errorsCreated.client["client.last_name"][0] }}</small
-                >
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label for="validationCustom03">Télefono</label>
-                <input
-                  v-model="client.phone"
-                  type="number"
-                  class="form-control"
-                  :class="{
-                    'is-invalid': errorsCreated.client['client.phone'],
-                  }"
-                />
-                <small
-                  v-if="errorsCreated.client['client.phone']"
-                  class="text-danger"
-                  >{{ errorsCreated.client["client.phone"][0] }}</small
-                >
-              </div>
-            </div>
-          </div>
-          <div class="float-right text-right">
-            <h5>Total a pagar:</h5>
-            <h3 class="price">$ {{ total }}</h3>
-          </div>
-          <div v-if="finishSearch">
-            <button v-if="loading" class="btn btn-warning text-white" disabled>
-              Crgando...
-            </button>
-
-            <button
-              v-else
-              @click="createOrder()"
-              class="btn btn-warning text-white"
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationCustom03">Email</label>
+            <input
+              type="email"
+              v-model="client.email"
+              class="form-control"
+              :class="{
+                'is-invalid':
+                  errors.email || errorsCreated.client['client.email'],
+              }"
+            />
+            <small v-if="errors.email" class="text-danger">{{
+              errors.email[0]
+            }}</small>
+            <small
+              v-if="errorsCreated.client['client.email']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.email"][0] }}</small
             >
-              Crear pedido
-            </button>
           </div>
+          <div class="col-md-6 mb-3" v-if="finishSearch">
+            <label for="validationCustom01">Tipo de documento</label>
+            <select
+              v-model="client.document_type_id"
+              class="form-control"
+              :class="{
+                'is-invalid': errorsCreated.client['client.document_type_id'],
+              }"
+            >
+              <option
+                v-for="documentType in documentTypes"
+                :key="documentType.id"
+                :value="documentType.id"
+              >
+                {{ documentType.name }}
+              </option>
+            </select>
+            <small
+              v-if="errorsCreated.client['client.document_type_id']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.document_type_id"][0] }}</small
+            >
+          </div>
+          <div class="col-md-6 mb-3" v-if="finishSearch">
+            <label for="validationCustom02">Número de documento</label>
+            <input
+              v-model="client.document_number"
+              type="text"
+              class="form-control"
+              :class="{
+                'is-invalid': errorsCreated.client['client.document_number'],
+              }"
+            />
+            <small
+              v-if="errorsCreated.client['client.document_number']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.document_number"][0] }}</small
+            >
+          </div>
+
+          <div class="col-md-6 mb-3" v-if="finishSearch">
+            <label for="validationCustom03">Nombre</label>
+            <input
+              v-model="client.name"
+              type="text"
+              class="form-control"
+              :class="{ 'is-invalid': errorsCreated.client['client.name'] }"
+            />
+            <small
+              v-if="errorsCreated.client['client.name']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.name"][0] }}</small
+            >
+          </div>
+          <div class="col-md-6 mb-3" v-if="finishSearch">
+            <label for="validationCustom03">Apellidos</label>
+            <input
+              v-model="client.last_name"
+              type="text"
+              class="form-control"
+              :class="{
+                'is-invalid': errorsCreated.client['client.last_name'],
+              }"
+            />
+            <small
+              v-if="errorsCreated.client['client.last_name']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.last_name"][0] }}</small
+            >
+          </div>
+
+          <div class="col-md-6 mb-3" v-if="finishSearch">
+            <label for="validationCustom03">Télefono</label>
+            <input
+              v-model="client.phone"
+              type="number"
+              class="form-control"
+              :class="{
+                'is-invalid': errorsCreated.client['client.phone'],
+              }"
+            />
+            <small
+              v-if="errorsCreated.client['client.phone']"
+              class="text-danger"
+              >{{ errorsCreated.client["client.phone"][0] }}</small
+            >
+          </div>
+        </div>
+        <div class="float-right text-right">
+          <h5>Total a pagar:</h5>
+          <h3 class="price">$ {{ total }}</h3>
+        </div>
+        <div v-if="finishSearch">
+          <button v-if="loading" class="btn btn-warning text-white" disabled>
+            Crgando...
+          </button>
+
           <button
             v-else
-            @click="searchCliet()"
+            @click="createOrder()"
             class="btn btn-warning text-white"
           >
-            Validar email
+            Crear pedido
           </button>
-        </form>
+        </div>
+        <button
+          v-else
+          @click="searchCliet()"
+          class="btn btn-warning text-white"
+        >
+          Validar email
+        </button>
       </div>
     </div>
   </div>
