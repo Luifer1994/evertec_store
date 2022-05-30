@@ -16,7 +16,7 @@
               <div class="d-flex flex-row mr-2">
                 <router-link to="/cart" class="new">
                   <i
-                    style="font-size: 40px; color: #ff6c0c"
+                    style="font-size: 35px; color: #ff6c0c"
                     class="fas fa-shopping-bag"
                   ></i>
 
@@ -27,7 +27,12 @@
 
                 <div class="m-2">
                   <router-link to="/clinents-orders">
-                    <h5>Mis pedidos</h5>
+                    <h6>Mis pedidos</h6>
+                  </router-link>
+                </div>
+                <div class="m-2">
+                  <router-link to="/list-orders">
+                    <h6>Pedidos del sistema</h6>
                   </router-link>
                 </div>
               </div>
